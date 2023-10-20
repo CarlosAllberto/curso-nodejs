@@ -1,0 +1,12 @@
+<h1>Bem vindo a tela Home</h1>
+
+{{#mostrar}}
+<h3>NOME: {{ nome }}</h3>
+<h3>IDADE: {{ idade }}</h3>
+{{/mostrar}}
+
+<ul>
+{{#ingredientes}}
+    <li>{{nome}} - {{qt}}</li>
+{{/ingredientes}}
+</ul>
