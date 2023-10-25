@@ -1,0 +1,22 @@
+<head>
+    {{#pageTitle}}
+        <title>{{pageTitle}}</title>
+    {{/pageTitle}}
+    {{^pageTitle}}
+        <title>{{helpers.defaultPageTitle}}</title>
+    {{/pageTitle}}
+</head>
+<body>
+    <div>
+        <h1>CABEÇALHO</h1>
+        <nav>
+            <ul>
+                {{#helpers.menu}}
+                    <li>
+                        <a href="{{slug}}">{{nome}}</a>
+                    </li>     
+                {{/helpers.menu}}
+            </ul>
+        </nav>
+    </div>
+</body>
