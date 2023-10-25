@@ -1,5 +1,5 @@
 const express = require('express')
-const router = require('./routes')
+const router = require('./src/routes')
 const mustache = require('mustache-express')
 const helpers = require('./helpers')
 
