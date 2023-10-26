@@ -1,0 +1,14 @@
+<form>
+    <div>
+        <input placeholder="Userame" name="name" type="text" />
+    </div>
+    <div>
+        <input placeholder="Email" name="email" type="email" />
+    </div>
+    <div>
+        <input placeholder="Password" name="password" type="password" />
+    </div>
+    <div>
+        <button type="submit">Register</button>
+    </div>
+</form>

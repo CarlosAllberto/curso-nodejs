@@ -1,0 +1,11 @@
+<form>
+    <div>
+        <input placeholder="Email" name="email" type="email" />
+    </div>
+    <div>
+        <input placeholder="Password" name="password" type="password" />
+    </div>
+    <div>
+        <button type="submit">Login</button>
+    </div>
+</form>

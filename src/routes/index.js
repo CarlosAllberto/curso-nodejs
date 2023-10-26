@@ -1,33 +1,20 @@
 const express = require('express')
 const router = express.Router()
+const homeController = require("../controllers/homeController")
+const userController = require("../controllers/userController")
+const sobreController = require("../controllers/sobreController")
+const postController = require("../controllers/postController")
 
-router.get('/', (req, res) => {
-    let obj = { 
-        // pageTitle: 'Titulo de Teste', 
-        nome: req.query.nome,
-        idade: req.query.idade,
-        mostrar: true,
-        ingredientes: [
-            { nome: 'Arroz', qt: '20g' },
-            { nome: 'Macarrão', qt: '100g' }
-        ],
-        interesses: [ 'node', 'js', 'css' ],
-        teste: '<strong>Testando Negrito</strong>'
-    }
-    res.render('home', obj)
-})
+router.get('/', homeController.index)
 
-router.get('/user', (req, res) => {
-    let nome = req.query.nome
-    res.send(`Olá, ${nome}`)
-    res.json(req.query)
-})
+router.get('/user', userController.index)
 
-router.get('/sobre', (req, res) => res.send('página sobre'))
+router.get('/user/login', userController.login)
 
-router.get('/posts/:id', (req, res) => {
-    let id = req.params.id
-    res.send(`post: ${id}`)
-})
+router.get('/user/register', userController.register)
+
+router.get('/sobre', sobreController.index)
+
+router.get('/posts/:id', postController.index)
 
 module.exports = router
