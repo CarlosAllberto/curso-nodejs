@@ -13,7 +13,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/', router)
-app.use('*', errorHandler.notFound)
+app.use(errorHandler.notFound)
 
 app.use(express.json())
 
