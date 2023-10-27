@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const homeController = require("../controllers/homeController")
-const userController = require("../controllers/userController")
-const sobreController = require("../controllers/sobreController")
-const postController = require("../controllers/postController")
+const homeController = require('../controllers/homeController')
+const userController = require('../controllers/userController')
+const sobreController = require('../controllers/sobreController')
+const postController = require('../controllers/postController')
 
-router.get('/', homeController.index)
+router.get('/', homeController.userMiddleware, homeController.index)
 
 router.get('/user', userController.index)
 

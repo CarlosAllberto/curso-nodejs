@@ -1,3 +1,8 @@
+exports.userMiddleware = (req, res, next) => {
+    req.userInfo = { name: 'Carlos', id: '22929' }
+    next()
+}
+
 exports.index = (req, res) => {
     let obj = { 
         // pageTitle: 'Titulo de Teste', 
@@ -9,7 +14,8 @@ exports.index = (req, res) => {
             { nome: 'Macarrão', qt: '100g' }
         ],
         interesses: [ 'node', 'js', 'css' ],
-        teste: '<strong>Testando Negrito</strong>'
+        teste: '<strong>Testando Negrito</strong>',
+        userInfo: req.userInfo
     }
     res.render('home', obj)
 }
