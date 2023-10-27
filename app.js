@@ -1,7 +1,8 @@
 const express = require('express')
-const router = require('./src/routes')
 const mustache = require('mustache-express')
+const router = require('./src/routes')
 const helpers = require('./helpers')
+const errorHandler = require("./src/handles/errorHandler")
 
 const app = express()
 
@@ -12,6 +13,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/', router)
+app.use('*', errorHandler.notFound)
 
 app.use(express.json())
 
