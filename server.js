@@ -1,6 +1,10 @@
 const app = require('./app')
 const dotenv = require('dotenv').config({ path: 'variables.env' })
+const mongoose = require('mongoose')
+
+mongoose.connect(process.env.DATABASE)
+mongoose.Promise = global.Promise
+mongoose.connection.on('error', error => console.error(`DEU ERRO: ${error.message}`))
 
 app.set('port', process.env.PORT || 7771)
-
 const server = app.listen(app.get('port'), () => console.log('\nSERVIDOR RODANDO\n'))
