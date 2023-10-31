@@ -15,6 +15,8 @@ router.get('/user/register', userController.register)
 
 router.get('/sobre', sobreController.index)
 
+router.get('/posts/add', postController.add)
+
 router.get('/posts/:id', postController.index)
 
 module.exports = router
