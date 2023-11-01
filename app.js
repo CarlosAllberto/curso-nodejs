@@ -16,6 +16,7 @@ app.use('/', router)
 app.use(errorHandler.notFound)
 
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 app.engine('mst', mustache(__dirname + '/src/views/partials', '.mst'))
 app.set('view engine', 'mst')

@@ -16,6 +16,7 @@ router.get('/user/register', userController.register)
 router.get('/sobre', sobreController.index)
 
 router.get('/posts/add', postController.add)
+router.post('/posts/add', postController.addAction)
 
 router.get('/posts/:id', postController.index)
 
