@@ -20,3 +20,7 @@
         </nav>
     </div>
 </body>
+
+{{#flashes}}
+    
+{{/flashes}}
