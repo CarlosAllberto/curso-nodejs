@@ -5,7 +5,7 @@ const postSchema = new mongoose.Schema({
 	title: {
 		type: String,
 		trim: true,
-		required: 'O post precisa de um título',
+		required: true,
 	},
 	slug: String,
 	body: {
@@ -13,6 +13,14 @@ const postSchema = new mongoose.Schema({
 		trim: true,
 	},
 	tags: [String],
+})
+
+postSchema.pre('save', next => {
+	if (this.isModified('title')) {
+		this.slug = slug(this.title, { lower: true })
+	}
+
+	next()
 })
 
 module.exports = mongoose.model('Post', postSchema)

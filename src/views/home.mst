@@ -2,6 +2,13 @@
 
 <h1>Bem vindo a tela Home: {{userInfo.name}}</h1>
 
+{{#posts}}
+    <h3>{{title}}</h3>
+    <p>{{body}}</p>
+    <p>{{slug}}</p>
+    <br  />
+{{/posts}}
+
 {{#mostrar}}
     <h3>NOME: {{ nome }}</h3>
     <h3>IDADE: {{ idade }}</h3>
