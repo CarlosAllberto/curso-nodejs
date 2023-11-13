@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Post = mongoose.model('Post')
+const slug = require('slug')
 
 exports.index = (req, res) => {
 	let id = req.params.id
@@ -21,9 +22,31 @@ exports.addAction = async (req, res) => {
 		await post.save()
 	} catch (err) {
 		req.flash('error', `Error: ${err.message}`)
-		return res.redirect('/post/add')
+		return res.redirect('/posts/add')
 	}
 
 	req.flash('sucess', 'Post salvo com sucesso!/')
+	res.redirect('/')
+}
+
+exports.edit = async (req, res) => {
+	let post = await Post.findOne({ slug: req.params.slug })
+	res.render('postEdit', { post })
+}
+
+exports.editAction = async (req, res) => {
+	req.body.slug = slug(req.body.title, { lower: true })
+
+	try {
+		await Post.findOneAndUpdate({ slug: req.params.slug }, req.body, {
+			new: true,
+			runValidators: true,
+		})
+	} catch(err) {
+		req.flash('error', `Error: ${err.message}`)
+		return res.redirect(`/posts/${req.params.slug}/edit`)
+	}
+
+	req.flash('sucess', 'Post atualizado com sucesso!')
 	res.redirect('/')
 }

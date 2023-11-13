@@ -1,0 +1,17 @@
+{{ >header }}
+
+<h2>Editar Post</h2>
+
+<form method="post">
+    <div>
+        <input placeholder="Titulo" name="title" type="text" value={{post.title}} />
+    </div>
+    <br />
+    <div>
+        <input placeholder="Corpo" name="body" type="text" value={{post.body}}/>
+    </div>
+    <br />
+    <div>
+        <button type="submit">Login</button>
+    </div>
+</form>
