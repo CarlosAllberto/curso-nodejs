@@ -10,13 +10,8 @@ exports.index = (req, res) => {
 exports.add = (req, res) => res.render('postAdd')
 
 exports.addAction = async (req, res) => {
-	// let { title, body } = req.body
-	// console.log(req.body)
-	let post = new Post({
-		title: 'teste2',
-		slug: 'pagina-teste',
-		body: 'corpo do post',
-	})
+	req.body.tags = req.body.tags.split(',').map(tag => tag.trim())
+	let post = new Post(req.body)
 
 	try {
 		await post.save()
@@ -42,7 +37,7 @@ exports.editAction = async (req, res) => {
 			new: true,
 			runValidators: true,
 		})
-	} catch(err) {
+	} catch (err) {
 		req.flash('error', `Error: ${err.message}`)
 		return res.redirect(`/posts/${req.params.slug}/edit`)
 	}

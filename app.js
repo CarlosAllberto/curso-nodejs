@@ -26,11 +26,12 @@ app.use((req, res, next) => {
 	next()
 })
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 app.use('/', router)
 app.use(errorHandler.notFound)
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
 
 
 app.engine('mst', mustache(__dirname + '/src/views/partials', '.mst'))
