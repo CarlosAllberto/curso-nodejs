@@ -21,6 +21,6 @@ router.post('/posts/add', postController.addAction)
 router.get('/posts/:slug/edit', postController.edit)
 router.post('/posts/:slug/edit', postController.editAction)
 
-router.get('/posts/:id', postController.index)
+router.get('/posts/:slug', postController.index)
 
 module.exports = router

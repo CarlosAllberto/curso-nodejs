@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 const Post = mongoose.model('Post')
 const slug = require('slug')
 
-exports.index = (req, res) => {
-	let id = req.params.id
-	res.send(`post: ${id}`)
+exports.index = async (req, res) => {
+	let post = await Post.findOne({ slug: req.params.slug })
+	res.render('postView', { post })
 }
 
 exports.add = (req, res) => res.render('postAdd')
