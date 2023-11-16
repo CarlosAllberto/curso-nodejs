@@ -29,10 +29,10 @@ app.use((req, res, next) => {
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+app.use(express.static(__dirname + '/public'))
+
 app.use('/', router)
 app.use(errorHandler.notFound)
-
-
 
 app.engine('mst', mustache(__dirname + '/src/views/partials', '.mst'))
 app.set('view engine', 'mst')

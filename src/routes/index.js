@@ -16,9 +16,11 @@ router.get('/user/register', userController.register)
 router.get('/sobre', sobreController.index)
 
 router.get('/posts/add', postController.add)
+
 router.post('/posts/add', postController.addAction)
 
 router.get('/posts/:slug/edit', postController.edit)
+
 router.post('/posts/:slug/edit', postController.editAction)
 
 router.get('/posts/:slug', postController.index)

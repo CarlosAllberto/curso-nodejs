@@ -5,20 +5,19 @@
     {{^pageTitle}}
         <title>{{helpers.defaultPageTitle}}</title>
     {{/pageTitle}}
+    <link rel="stylesheet" href="/assets/css/style.css"/>
 </head>
 <body>
-    <div>
+    <header>
         <h1>CABEÇALHO</h1>
         <nav>
-            <ul>
-                {{#helpers.menu}}
-                    <li>
-                        <a href="{{slug}}">{{nome}}</a>
-                    </li>     
-                {{/helpers.menu}}
-            </ul>
+            {{#helpers.menu}}
+                <div>
+                    <a href="{{slug}}">{{nome}}</a>
+                </div>     
+            {{/helpers.menu}}
         </nav>
-    </div>
+    </header>
 </body>
 
 {{#flashes}}
