@@ -7,6 +7,7 @@
     <p>{{body}}</p>
     <p>{{slug}}</p>
     <p>{{tags}}</p>
+    <a href="/posts/{{slug}}/edit">[ EDITAR ]</a>
     <br  />
 {{/posts}}
 

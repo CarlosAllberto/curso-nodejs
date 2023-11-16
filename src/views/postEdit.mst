@@ -12,6 +12,11 @@
     </div>
     <br />
     <div>
+        <p>OBS: Separar as tags por virgula!</p>
+        <input placeholder="Tags" name="tags" type="text" value={{post.tags}}/>
+    </div>
+    <br />
+    <div>
         <button type="submit">Login</button>
     </div>
 </form>
