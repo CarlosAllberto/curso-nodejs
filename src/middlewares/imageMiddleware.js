@@ -2,18 +2,27 @@ const multer = require('multer')
 const jimp = require('jimp')
 const uuid = require('uuid')
 
-const multerOption = {
+const multerOptions = {
 	storage: multer.memoryStorage(),
 	fileFilter: (req, file, next) => {
 		let allowed = ['image/jpg', 'image/png', 'image/jpeg']
-		if (allowed.includes(file.mimetype)) {
-			next(null, true)
-		} else {
-			next({ msg: 'Arquivo não Suportado' }, false)
-		}
+
+		if (allowed.includes(file.mimetype)) return next(null, true)
+		next({ msg: 'Arquivo não Suportado' }, false)
 	},
 }
 
-exports.upload = multer(multer).single('photo')
+exports.upload = multer(multerOptions).single('photo')
 
-exports.resize = () => {}
+exports.resize = async (req, res, next) => {
+	if (!req.file) return next()
+
+	let ext = req.file.mimetype.split('/')[1]
+    let filename = `${uuid.v4()}.${ext}`
+    req.body.photo = filename
+
+    let photo = await jimp.read(req.file.buffer)
+    await photo.resize(800, jimp.AUTO)
+    await photo.write(`../../public/media/${filename}`)
+    next()
+}

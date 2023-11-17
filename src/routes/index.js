@@ -5,6 +5,8 @@ const userController = require('../controllers/userController')
 const sobreController = require('../controllers/sobreController')
 const postController = require('../controllers/postController')
 
+const imageMiddleware = require('../middlewares/imageMiddleware')
+
 router.get('/', homeController.userMiddleware, homeController.index)
 
 router.get('/user', userController.index)
@@ -17,7 +19,7 @@ router.get('/sobre', sobreController.index)
 
 router.get('/posts/add', postController.add)
 
-router.post('/posts/add', postController.addAction)
+router.post('/posts/add', imageMiddleware.upload, imageMiddleware.resize, postController.addAction)
 
 router.get('/posts/:slug/edit', postController.edit)
 
