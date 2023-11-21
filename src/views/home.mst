@@ -4,7 +4,7 @@
 
 {{#posts}}
     {{#photo}}
-        <img width="100%" src="/media/{{photo}}"/>
+        <img width="200" src="/media/{{photo}}"/>
     {{/photo}}
     <a href="/posts/{{slug}}">
         <h3>{{title}}</h3>

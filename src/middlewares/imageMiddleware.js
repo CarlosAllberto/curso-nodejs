@@ -22,7 +22,7 @@ exports.resize = async (req, res, next) => {
     req.body.photo = filename
 
     let photo = await jimp.read(req.file.buffer)
-    await photo.resize(800, jimp.AUTO)
-    await photo.write(`../../public/media/${filename}`)
+    photo.resize(800, jimp.AUTO)
+    photo.write(`../../public/media/${filename}`)
     next()
 }
