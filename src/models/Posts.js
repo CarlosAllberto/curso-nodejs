@@ -17,9 +17,16 @@ const postSchema = new mongoose.Schema({
 	tags: [String],
 })
 
-postSchema.pre('save', function (next) {
+postSchema.pre('save', async function (next) {
 	if (this.isModified('title')) {
 		this.slug = slug(this.title, { lower: true })
+
+		let slugRegex = new RegExp(`^(${this.slug})((-[0-9]{1,}$)?)$`, 'i')
+		let postsWidthSlug = await this.constructor.find({slug:slugRegex})
+
+		if (postsWidthSlug.length > 0) {
+			this.slug = `${this.slug}-${postsWidthSlug.length + 1}`
+		}
 	}
 
 	next()
