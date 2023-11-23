@@ -21,8 +21,8 @@ exports.index = async (req, res) => {
 		userInfo: req.userInfo,
 	}
 
-    let posts = await Post.find()
-    response.posts = posts
+	response.tags = await Post.getTagsList()
+    response.posts = await Post.find()
 
 	res.render('home', response)
 }
