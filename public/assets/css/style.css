@@ -10,3 +10,6 @@ nav {
     display: flex;
     gap: 20px;
 }
+
+.tag.selected a { color: blueviolet; }
+.tag a { color: #252525; }

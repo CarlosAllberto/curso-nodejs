@@ -19,9 +19,16 @@ exports.index = async (req, res) => {
 		interesses: ['node', 'js', 'css'],
 		teste: '<strong>Testando Negrito</strong>',
 		userInfo: req.userInfo,
+		tag: req.tag
 	}
 
-	response.tags = await Post.getTagsList()
+	response.tag = req.query.tag
+
+	let tags = await Post.getTagsList()
+	tags.forEach(e => { if (e._id === response.tag) e.class = "selected" })
+
+	response.tags = tags
+
     response.posts = await Post.find()
 
 	res.render('home', response)
