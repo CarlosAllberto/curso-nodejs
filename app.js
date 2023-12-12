@@ -6,6 +6,8 @@ const errorHandler = require('./src/handles/errorHandler')
 const session = require('express-session')
 const flash = require('express-flash')
 const cookieParser = require('cookie-parser')
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
 
 const app = express()
 
@@ -30,6 +32,14 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use(express.static(__dirname + '/public'))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+const User = require("./src/models/User")
+passport.use(new LocalStrategy(User.authenticate()))
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
 
 app.use('/', router)
 app.use(errorHandler.notFound)

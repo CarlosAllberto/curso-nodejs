@@ -23,13 +23,17 @@ exports.index = async (req, res) => {
 	}
 
 	response.tag = req.query.tag
+	let postFilter = response.tag != "undefined" ? { tags: response.tag } : ""
 
-	let tags = await Post.getTagsList()
+	let tagsPromise = Post.getTagsList()
+	let postsPromise = Post.find(postFilter)
+
+	const [ tags, posts ] = await Promise.all([ tagsPromise, postsPromise ])
+
 	tags.forEach(e => { if (e._id === response.tag) e.class = "selected" })
 
 	response.tags = tags
-
-    response.posts = await Post.find()
+    response.posts = posts
 
 	res.render('home', response)
 }

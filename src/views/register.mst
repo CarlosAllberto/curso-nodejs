@@ -1,6 +1,6 @@
 <form>
     <div>
-        <input placeholder="Userame" name="name" type="text" />
+        <input placeholder="Username" name="username" type="text" />
     </div>
     <div>
         <input placeholder="Email" name="email" type="email" />

@@ -1,5 +1,8 @@
 <form>
     <div>
+        <input placeholder="Username" name="username" type="text" />
+    </div>
+    <div>
         <input placeholder="Email" name="email" type="email" />
     </div>
     <div>

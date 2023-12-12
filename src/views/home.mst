@@ -4,7 +4,7 @@
 
 {{#tags}}
     <a class="tag {{class}}" href="/?tag={{_id}}">
-        {{_id}}{{count}}
+        {{_id}}({{count}})
     </a>
 {{/tags}}
 
