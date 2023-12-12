@@ -14,7 +14,7 @@ exports.addAction = async (req, res) => {
 	let post = new Post(req.body)
 
 	try {
-		await post.save() 
+		await post.save()
 	} catch (err) {
 		req.flash('error', `Error: ${err.message}`)
 		return res.redirect('/posts/add')

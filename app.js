@@ -36,7 +36,7 @@ app.use(express.static(__dirname + '/public'))
 app.use(passport.initialize())
 app.use(passport.session())
 
-const User = require("./src/models/User")
+const User = require('./src/models/User')
 passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
