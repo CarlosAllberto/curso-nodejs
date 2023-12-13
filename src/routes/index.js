@@ -12,8 +12,10 @@ router.get('/', homeController.userMiddleware, homeController.index)
 router.get('/user', userController.index)
 
 router.get('/user/login', userController.login)
+router.post('/user/login', userController.loginAction)
 
 router.get('/user/register', userController.register)
+router.post('/user/register', userController.registerAction)
 
 router.get('/sobre', sobreController.index)
 
