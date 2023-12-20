@@ -13,6 +13,7 @@ router.get('/user', userController.index)
 
 router.get('/user/login', userController.login)
 router.post('/user/login', userController.loginAction)
+router.post('/users/logout', userController.logout)
 
 router.get('/user/register', userController.register)
 router.post('/user/register', userController.registerAction)

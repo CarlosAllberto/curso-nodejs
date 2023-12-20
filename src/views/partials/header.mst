@@ -10,6 +10,10 @@
 <body>
     <header>
         <h1>CABEÇALHO</h1>
+        {{#user}}
+            <p>Olá {{name}}. </p>
+            <a href="/users/logout">Sair</a>
+        {{/user}}
         <nav>
             {{#helpers.menu}}
                 <div>

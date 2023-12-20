@@ -18,6 +18,9 @@ exports.loginAction = (req, res) => {
 			res.redirect('/user/login')
 			return
 		}
+
+		req.login(result, () => {})
+
 		req.flash('sucess', 'Você foi logado com sucesso')
 		res.redirect('/')
 	})
@@ -38,4 +41,9 @@ exports.registerAction = (req, res) => {
 		req.flash('sucesss', 'cadastrado com sucesso')
 		res.redirect('/user/login')
 	})
+}
+
+exports.logout = (req, res) => {
+	req.logout()
+	res.redirect('/')
 }
