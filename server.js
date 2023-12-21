@@ -9,4 +9,4 @@ require('./src/models/Posts')
 const app = require('./app')
 
 app.set('port', process.env.PORT || 7771)
-const server = app.listen(app.get('port'), () => console.log('\nSERVIDOR RODANDO\n'))
+const server = app.listen(app.get('port'), () => console.log(`\nSERVIDOR RODANDO EM: https://localhost:${app.get('port')}\n`))

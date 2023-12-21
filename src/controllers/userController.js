@@ -19,10 +19,12 @@ exports.loginAction = (req, res) => {
 			return
 		}
 
-		req.login(result, () => {})
+		req.login(result, err => {
+			if (err) { return req.flash('error', 'Não foi possivel autenticar') }
 
-		req.flash('sucess', 'Você foi logado com sucesso')
-		res.redirect('/')
+			req.flash('sucess', 'Você foi logado com sucesso')
+			res.redirect('/')
+		})
 	})
 }
 

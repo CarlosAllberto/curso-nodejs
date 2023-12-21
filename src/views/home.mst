@@ -1,6 +1,6 @@
 {{> header}}
 
-<h1>Bem vindo a tela Home: {{userInfo.name}}</h1>
+<h1>Bem vindo a tela Home</h1>
 
 {{#tags}}
     <a class="tag {{class}}" href="/?tag={{_id}}">
