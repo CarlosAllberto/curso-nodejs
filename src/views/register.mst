@@ -1,0 +1,17 @@
+{{> header}}
+
+<h1>Cadastro</h1>
+<form method="post">
+    <div>
+        <input placeholder="Username" name="username" type="text" />
+    </div>
+    <div>
+        <input placeholder="Email" name="email" type="email" />
+    </div>
+    <div>
+        <input placeholder="Password" name="password" type="password" />
+    </div>
+    <div>
+        <button type="submit">Register</button>
+    </div>
+</form>

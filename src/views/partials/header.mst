@@ -1,0 +1,37 @@
+<head>
+    {{#pageTitle}}
+        <title>{{pageTitle}}</title>
+    {{/pageTitle}}
+    {{^pageTitle}}
+        <title>{{helpers.defaultPageTitle}}</title>
+    {{/pageTitle}}
+    <link rel="stylesheet" href="/assets/css/style.css"/>
+</head>
+<body>
+    <header>
+        <h1>CABEÇALHO</h1>
+        {{#user}}
+            <p>Olá {{username}}. </p>
+            <a href="/user/logout">Sair</a>
+        {{/user}}
+        <nav>
+            {{#helpers.menu}}
+                <div>
+                    <a href="{{slug}}">{{nome}}</a>
+                </div>     
+            {{/helpers.menu}}
+        </nav>
+    </header>
+</body>
+
+{{#flashes}}
+    {{#sucess}}
+        <div>{{.}}</div>
+    {{/sucess}} 
+    {{#error}}
+        <div>{{.}}</div>
+    {{/error}}  
+    {{#info}}
+        <div>{{.}}</div>
+    {{/info}}   
+{{/flashes}}

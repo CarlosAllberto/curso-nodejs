@@ -1,0 +1,29 @@
+{{ >header }}
+
+<h2>Editar Post</h2>
+
+<form method="post" enctypt="multipart/form-data">
+    <div>
+        {{#post.photo}}
+            <img width="200" src="/media/{{post.photo}}"/>
+        {{/post.photo}}
+        <input name="photo" type="file" />
+    </div>
+    <br />
+    <div>
+        <input placeholder="Titulo" name="title" type="text" value={{post.title}} />
+    </div>
+    <br />
+    <div>
+        <input placeholder="Corpo" name="body" type="text" value={{post.body}}/>
+    </div>
+    <br />
+    <div>
+        <p>OBS: Separar as tags por virgula!</p>
+        <input placeholder="Tags" name="tags" type="text" value={{post.tags}}/>
+    </div>
+    <br />
+    <div>
+        <button type="submit">Login</button>
+    </div>
+</form>

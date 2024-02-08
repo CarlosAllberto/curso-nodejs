@@ -1,0 +1,47 @@
+{{> header}}
+
+<h1>Bem vindo a tela Home</h1>
+
+{{#tags}}
+    <a class="tag {{class}}" href="/?tag={{_id}}">
+        {{_id}}({{count}})
+    </a>
+{{/tags}}
+
+{{#posts}}
+    {{#photo}}
+        <img width="200" src="/media/{{photo}}"/>
+    {{/photo}}
+    <a href="/posts/{{slug}}">
+        <h3>{{title}}</h3>
+    </a>
+    <p>{{body}}</p>
+    <p>{{slug}}</p>
+    <p>{{tags}}</p>
+    <a href="/posts/{{slug}}/edit">[ EDITAR ]</a>
+    <br  />
+{{/posts}}
+
+{{#mostrar}}
+    <h3>NOME: {{ nome }}</h3>
+    <h3>IDADE: {{ idade }}</h3>
+{{/mostrar}}
+
+<ul>
+    {{#ingredientes}}
+        <li>{{nome}} - {{qt}}</li>
+    {{/ingredientes}}
+</ul>
+{{^ingredients}}
+    <p>Não há ingredientes</p>
+{{/ingredients}}
+
+<ul>
+    {{#interesses}}
+        <li>{{.}}</li>
+    {{/interesses}}
+</ul>
+
+{{{teste}}}
+
+{{! Exemplo de Comentario }}
