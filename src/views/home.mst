@@ -18,7 +18,9 @@
     <p>{{body}}</p>
     <p>{{slug}}</p>
     <p>{{tags}}</p>
-    <a href="/posts/{{slug}}/edit">[ EDITAR ]</a>
+    {{#user}}
+        <a href="/posts/{{slug}}/edit">[ EDITAR ]</a>
+    {{/user}}
     <br  />
 {{/posts}}
 

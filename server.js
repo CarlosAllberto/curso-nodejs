@@ -1,4 +1,4 @@
-const dotenv = require('dotenv').config({ path: 'variables.env' })
+require('dotenv').config({ path: 'variables.env' })
 const mongoose = require('mongoose')
 
 mongoose.connect(process.env.DATABASE)

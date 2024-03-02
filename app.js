@@ -35,10 +35,17 @@ passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
 app.use((req, res, next) => {
-	res.locals.helpers = helpers
+	res.locals.helpers = { ...helpers }
 	res.locals.teste = '123'
 	res.locals.flashes = req.flash()
 	res.locals.user = req.user
+
+	if (req.isAuthenticated()) {
+		res.locals.helpers.menu = res.locals.helpers.menu.filter(e => e.logged)
+	} else {
+		res.locals.helpers.menu = res.locals.helpers.menu.filter(e => e.guest)
+	}
+
 	next()
 })
 

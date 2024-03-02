@@ -22,8 +22,6 @@ exports.index = async (req, res) => {
 		tag: req.tag,
 	}
 
-	console.log(req.user)
-
 	response.tag = req.query.tag
 	let postFilter = response.tag != 'undefined' ? { tags: response.tag } : ''
 
