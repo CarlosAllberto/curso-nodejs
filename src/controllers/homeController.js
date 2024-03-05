@@ -26,7 +26,7 @@ exports.index = async (req, res) => {
 	let postFilter = response.tag != 'undefined' ? { tags: response.tag } : ''
 
 	let tagsPromise = Post.getTagsList()
-	let postsPromise = Post.find(postFilter)
+	let postsPromise = Post.getPosts(postFilter)
 
 	const [tags, posts] = await Promise.all([tagsPromise, postsPromise])
 
@@ -36,6 +36,7 @@ exports.index = async (req, res) => {
 
 	response.tags = tags
 	response.posts = posts
+	response.posts[0].author = posts[0].author[0].username
 
 	res.render('home', response)
 }

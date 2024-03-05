@@ -1,49 +1,54 @@
 {{> header}}
 
-<h1>Bem vindo a tela Home</h1>
+<div class="container">
+    <h1>Bem vindo a tela Home</h1>
 
-{{#tags}}
-    <a class="tag {{class}}" href="/?tag={{_id}}">
-        {{_id}}({{count}})
-    </a>
-{{/tags}}
+    <div>
+        {{#tags}}
+            <a class="tag {{class}}" href="/?tag={{_id}}">
+                {{_id}}({{count}})
+            </a>
+        {{/tags}}
+    </div>
 
-{{#posts}}
-    {{#photo}}
-        <img width="200" src="/media/{{photo}}"/>
-    {{/photo}}
-    <a href="/posts/{{slug}}">
-        <h3>{{title}}</h3>
-    </a>
-    <p>{{body}}</p>
-    <p>{{slug}}</p>
-    <p>{{tags}}</p>
-    {{#user}}
-        <a href="/posts/{{slug}}/edit">[ EDITAR ]</a>
-    {{/user}}
-    <br  />
-{{/posts}}
+    {{#posts}}
+        {{#photo}}
+            <img width="200" src="/media/{{photo}}"/>
+        {{/photo}}
+        <a href="/posts/{{slug}}">
+            <h3>{{title}}</h3>
+        </a>
+        <small>Autor: {{author}}</small>
+        <p>{{body}}</p>
+        <p>{{slug}}</p>
+        <p>{{tags}}</p>
+        {{#user}}
+            <a href="/posts/{{slug}}/edit">[ EDITAR ]</a>
+        {{/user}}
+        <br  />
+    {{/posts}}
 
-{{#mostrar}}
-    <h3>NOME: {{ nome }}</h3>
-    <h3>IDADE: {{ idade }}</h3>
-{{/mostrar}}
+    {{#mostrar}}
+        <h3>NOME: {{ nome }}</h3>
+        <h3>IDADE: {{ idade }}</h3>
+    {{/mostrar}}
 
-<ul>
-    {{#ingredientes}}
-        <li>{{nome}} - {{qt}}</li>
-    {{/ingredientes}}
-</ul>
-{{^ingredients}}
-    <p>Não há ingredientes</p>
-{{/ingredients}}
+    <ul>
+        {{#ingredientes}}
+            <li>{{nome}} - {{qt}}</li>
+        {{/ingredientes}}
+    </ul>
+    {{^ingredients}}
+        <p>Não há ingredientes</p>
+    {{/ingredients}}
 
-<ul>
-    {{#interesses}}
-        <li>{{.}}</li>
-    {{/interesses}}
-</ul>
+    <ul>
+        {{#interesses}}
+            <li>{{.}}</li>
+        {{/interesses}}
+    </ul>
 
-{{{teste}}}
+    {{{teste}}}
+</div>
 
 {{! Exemplo de Comentario }}

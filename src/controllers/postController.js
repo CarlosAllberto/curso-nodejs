@@ -11,6 +11,7 @@ exports.add = (req, res) => res.render('postAdd')
 
 exports.addAction = async (req, res) => {
 	req.body.tags = req.body.tags.split(',').map(tag => tag.trim())
+	req.body.author = req.user._id
 	let post = new Post(req.body)
 
 	try {
