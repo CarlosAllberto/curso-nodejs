@@ -67,9 +67,9 @@ exports.profileAction = async (req, res) => {
 		)
 	} catch (err) {
 		req.flash('error', 'não foi possivel alterar:', err.message)
-		return res.redirect('/user/profile')
+		return res.redirect('/profile')
 	}
 
 	req.flash('success', 'dados alterados com sucesso!')
-	res.redirect('/user/profile')
+	res.redirect('/profile')
 }

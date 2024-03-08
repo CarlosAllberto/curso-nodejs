@@ -31,7 +31,8 @@ router.post('/posts/:slug/edit', authMiddleware.index, postController.editAction
 
 router.get('/posts/:slug', postController.index)
 
-router.get('/user/profile', authMiddleware.index, userController.profile)
-router.post('/user/profile', authMiddleware.index, userController.profileAction)
+router.get('/profile', authMiddleware.index, userController.profile)
+router.post('/profile', authMiddleware.index, userController.profileAction)
+router.post('/profile/password', authMiddleware.index, authMiddleware.changePassword)
 
 module.exports = router
