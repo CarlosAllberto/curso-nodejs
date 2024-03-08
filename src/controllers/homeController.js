@@ -36,7 +36,7 @@ exports.index = async (req, res) => {
 
 	response.tags = tags
 	response.posts = posts
-	response.posts[0].author = posts[0].author[0].username
+	// response.posts[0].author = posts[0].author[0].username
 
 	res.render('home', response)
 }

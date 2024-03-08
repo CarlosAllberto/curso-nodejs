@@ -1,3 +1,4 @@
+const flash = require('express-flash')
 const User = require('../models/User')
 
 exports.index = (req, res) => {
@@ -19,7 +20,9 @@ exports.loginAction = (req, res) => {
 		}
 
 		req.login(result, err => {
-			if (err) { return req.flash('error', 'Não foi possivel autenticar') }
+			if (err) {
+				return req.flash('error', 'Não foi possivel autenticar')
+			}
 
 			req.flash('sucess', 'Você foi logado com sucesso')
 			res.redirect('/')
@@ -39,7 +42,7 @@ exports.registerAction = (req, res) => {
 			return
 		}
 
-		req.flash('sucesss', 'cadastrado com sucesso')
+		req.flash('sucess', 'cadastrado com sucesso')
 		res.redirect('/user/login')
 	})
 }
@@ -49,4 +52,24 @@ exports.logout = (req, res) => {
 		if (err) return req.flash('error', 'não foi possivel fazer logout')
 		res.redirect('/')
 	})
+}
+
+exports.profile = (req, res) => res.render('profile')
+
+exports.profileAction = async (req, res) => {
+	try {
+		let { username, email } = req.body
+
+		await User.findOneAndUpdate(
+			{ _id: req.user._id },
+			{ username: username, email: email },
+			{ new: true, runValidators: true },
+		)
+	} catch (err) {
+		req.flash('error', 'não foi possivel alterar:', err.message)
+		return res.redirect('/user/profile')
+	}
+
+	req.flash('success', 'dados alterados com sucesso!')
+	res.redirect('/user/profile')
 }

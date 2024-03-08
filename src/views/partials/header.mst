@@ -11,7 +11,7 @@
     <header>
         <h1>CABEÇALHO</h1>
         {{#user}}
-            <p>Olá {{username}}.</p>
+            <p>Olá <a href="/user/profile">{{username}}.</a></p>
         {{/user}}
         <nav>
             {{#helpers.menu}}
