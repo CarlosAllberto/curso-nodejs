@@ -88,7 +88,7 @@ exports.forgetAction = async (req, res) => {
 	user.resetPasswordExpires = Date.now() + 3600000 // 1 hora
 	await user.save()
 
-	let resetLink = `https://${req.headers.host}/user/reset/${user.resetPasswordToken}`
+	let resetLink = `http://${req.headers.host}/user/forget/${user.resetPasswordToken}`
 
 	console.log(resetLink)
 	res.redirect('/user/login')
@@ -106,4 +106,31 @@ exports.forgetToken = async (req, res) => {
 	}
 
 	res.render('forgetPassword')
+}
+
+exports.forgetTokenAction = async (req, res) => {
+	let user = await User.findOne({
+		resetPasswordToken: req.params.token,
+		resetPasswordExpires: { $gt: Date.now() },
+	})
+
+	if (!user) {
+		req.flash('error', 'Token expirado')
+		return res.redirect('/user/forget')
+	}
+
+	let password = req.body.password
+	let passwordConfirm = req.body['password-confirm']
+
+	if (password !== passwordConfirm) {
+		req.flash('error', 'senhas não são iguais')
+		return res.redirect('back')
+	}
+
+	user.setPassword(password, async () => {
+		await user.save()
+
+		req.flash('sucess', 'senha alterada com successo!')
+		return res.redirect('/')
+	})
 }
