@@ -11,4 +11,7 @@
     <div>
         <button type="submit">Login</button>
     </div>
+    <div>
+        <a href="/user/forget">Esqueci minha senha</a>
+    </div>
 </form>

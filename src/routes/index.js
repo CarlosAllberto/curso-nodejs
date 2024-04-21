@@ -16,6 +16,10 @@ router.get('/user/login', userController.login)
 router.post('/user/login', userController.loginAction)
 router.get('/user/logout', userController.logout)
 
+router.get('/user/forget', userController.forget)
+router.post('/user/forget', userController.forgetAction)
+router.get('/user/forget/:token', userController.forgetToken)
+
 router.get('/user/register', userController.register)
 router.post('/user/register', userController.registerAction)
 

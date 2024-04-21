@@ -1,4 +1,5 @@
-const flash = require('express-flash')
+require('express-flash')
+const { randomBytes } = require('crypto')
 const User = require('../models/User')
 
 exports.index = (req, res) => {
@@ -72,4 +73,37 @@ exports.profileAction = async (req, res) => {
 
 	req.flash('success', 'dados alterados com sucesso!')
 	res.redirect('/profile')
+}
+
+exports.forget = (req, res) => res.render('forget')
+
+exports.forgetAction = async (req, res) => {
+	let user = await User.findOne({ email: req.body.email }).exec()
+	if (!user) {
+		req.flash('error', 'E-mail não cadastrado')
+		return res.redirect('/user/forget')
+	}
+
+	user.resetPasswordToken = randomBytes(20).toString('hex')
+	user.resetPasswordExpires = Date.now() + 3600000 // 1 hora
+	await user.save()
+
+	let resetLink = `https://${req.headers.host}/user/reset/${user.resetPasswordToken}`
+
+	console.log(resetLink)
+	res.redirect('/user/login')
+}
+
+exports.forgetToken = async (req, res) => {
+	let user = await User.findOne({
+		resetPasswordToken: req.params.token,
+		resetPasswordExpires: { $gt: Date.now() },
+	})
+
+	if (!user) {
+		req.flash('error', 'Token expirado')
+		return res.redirect('/user/forget')
+	}
+
+	res.render('forgetPassword')
 }
