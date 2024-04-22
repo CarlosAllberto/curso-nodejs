@@ -18,7 +18,7 @@
         <a href="/posts/{{slug}}">
             <h3>{{title}}</h3>
         </a>
-        <small>Autor: {{author}}</small>
+        <small>Author: {{author}}</small>
         <p>{{body}}</p>
         <p>{{slug}}</p>
         <p>{{tags}}</p>

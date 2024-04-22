@@ -1,6 +1,7 @@
 require('express-flash')
 const { randomBytes } = require('crypto')
 const User = require('../models/User')
+const mailHandler = require("../handles/mailHandler")
 
 exports.index = (req, res) => {
 	let nome = req.query.nome
@@ -89,6 +90,17 @@ exports.forgetAction = async (req, res) => {
 	await user.save()
 
 	let resetLink = `http://${req.headers.host}/user/forget/${user.resetPasswordToken}`
+
+	let to = `${user.username} <${user.email}>` 
+	let html = `Link para resetar sua senha:<br /><a href="${resetLink}">Resetar senha</a>`
+	let text = `Link para resetar sua senha: ${resetLink}`
+
+	mailHandler.send({
+		to,
+		subjct: 'Resetar sua senha',
+		html,
+		text,
+	})
 
 	console.log(resetLink)
 	res.redirect('/user/login')
